@@ -27,6 +27,22 @@ function createItem(item) {
   const deleteButton = clone.querySelector(".to-do__item-button_type_delete");
   const duplicateButton = clone.querySelector(".to-do__item-button_type_duplicate");
   const editButton = clone.querySelector(".to-do__item-button_type_edit");
+	editButton.addEventListener("click", (evt) => {
+		textElement.setAttribute("contenteditable", "true");
+		textElement.focus();
+	});
+	textElement.addEventListener("blur", (evt) => {
+		textElement.setAttribute("contenteditable", "false");
+		const items = getTasksFromDOM();
+		saveTasks(items);
+	});
+	duplicateButton.addEventListener("click", (evt) => {
+		const itemName = textElement.textContent;
+		const newItem = createItem(item);
+		listElement.prepend(newItem);
+		const items = getTasksFromDOM();
+		saveTasks(items);
+	});
 	deleteButton.addEventListener("click", (evt) => {
 		clone.remove();
 		const items = getTasksFromDOM();
