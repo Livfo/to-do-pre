@@ -11,8 +11,8 @@ const listElement = document.querySelector(".to-do__list");
 const formElement = document.querySelector(".to-do__form");
 const inputElement = document.querySelector(".to-do__input");
 
-function loadTasks() {
-
+function loadTasks(items) {
+	return items; 
 }
 
 function createItem(item) {
@@ -22,6 +22,8 @@ function createItem(item) {
   const deleteButton = clone.querySelector(".to-do__item-button_type_delete");
   const duplicateButton = clone.querySelector(".to-do__item-button_type_duplicate");
   const editButton = clone.querySelector(".to-do__item-button_type_edit");
+	textElement.textContent = item;
+	return clone;
 
 }
 
@@ -33,3 +35,7 @@ function saveTasks(tasks) {
 
 }
 
+items = loadTasks(items);
+items.forEach((item) => {
+	listElement.append(createItem(item));
+});
