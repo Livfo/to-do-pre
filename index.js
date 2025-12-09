@@ -39,3 +39,10 @@ items = loadTasks(items);
 items.forEach((item) => {
 	listElement.append(createItem(item));
 });
+
+formElement.addEventListener('submit', (evt) => {
+	evt.preventDefault();
+	const taskText = inputElement.value;
+	listElement.prepend(createItem(taskText));
+	inputElement.value = '';
+});
